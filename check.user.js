@@ -1,8 +1,7 @@
 // ==UserScript==
-// @name         Instagram Story Layout Fix
+// @name         Instagram Viewport Test
 // @namespace    instagram-layout-fix
-// @version      1.0
-// @description  Instagram story editor layout adjustment
+// @version      2.0
 // @match        https://instagram.com/*
 // @match        https://www.instagram.com/*
 // @grant        none
@@ -11,24 +10,12 @@
 (function () {
     'use strict';
 
-    const style = document.createElement('style');
+    const meta = document.querySelector('meta[name="viewport"]');
 
-    style.textContent = `
-        @media (max-width: 768px) {
-            html, body {
-                max-width: 100% !important;
-                overflow-x: hidden !important;
-            }
-
-            body {
-                width: 100% !important;
-            }
-
-            img {
-                max-width: 100% !important;
-            }
-        }
-    `;
-
-    document.head.appendChild(style);
+    if (meta) {
+        meta.setAttribute(
+            'content',
+            'width=device-width, initial-scale=1, maximum-scale=1'
+        );
+    }
 })();
